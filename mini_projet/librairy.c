@@ -23,17 +23,20 @@ void addBook()
     }
 
     printf("\n=============== Enter book informations ====================\n");
-    printf("title: ");
-    scanf("%[^\n]s", stock[counter].title);
-    printf("author: ");
-    scanf("%[^\n]s", stock[counter].author);
-    printf("price: ");
-    scanf("%f", stock[counter].price);
+    printf("Title: ");
+    scanf("%s", stock[counter].title);
+
+    printf("Author: ");
+    scanf("%s", stock[counter].author);
+
+    printf("Price: ");
+    scanf("%f", &stock[counter].price);
+
     printf("Quantity: ");
-    scanf("%d", stock[counter].quantity);
+    scanf("%d", &stock[counter].quantity);
 
     counter++;
-    printf("book created successfully!!");
+    printf("Book created successfully!!\n");
 };
 
 // ************************************************************************
@@ -56,92 +59,121 @@ void showBooks()
     }
 };
 
-// *****************************************************************
+// *************************************************************************
 
 void searchBook()
 {
-
-    int search;
+    char search[50];
+    int found = 0;
 
     printf("Enter the title: ");
-    scanf("%s", &search);
+    scanf("%s", search);
 
     if (counter == 0)
     {
-        printf("no books to show!");
+        printf("No books to show!\n");
         return;
     }
 
     for (int i = 0; i < counter; i++)
     {
-        if (stock[i].title == search)
+        if (strcmp(stock[i].title, search) == 0)
         {
-            printf("Title :%s \n", stock[i].title);
-            printf("Author :%s\n", stock[i].author);
-            printf("Price :%f \n", stock[i].price);
-            printf("Quantity :%d \n", stock[i].quantity);
-        }
-        else
-        {
-            printf("this book doesnt exist in our librairy");
+            printf("Title   : %s\n", stock[i].title);
+            printf("Author  : %s\n", stock[i].author);
+            printf("Price   : %.2f\n", stock[i].price);
+            printf("Quantity: %d\n", stock[i].quantity);
+            found = 1;
+            break;  
         }
     }
-};
+
+    if (!found)
+    {
+        printf("This book doesnt exist in our library.\n");
+    }
+}
+
+
+// *************************************************************************
+
 
 void updateQuantity()
 {
-    int search;
+    char search[50];
+    int newQuantity;
+    int found = 0;
 
     printf("Enter the title: ");
-    scanf("%s", &search);
+    scanf("%s", search);
 
     if (counter == 0)
     {
-        printf("not found!");
+        printf("No books to update!\n");
         return;
     }
 
     for (int i = 0; i < counter; i++)
     {
-        if (stock[i].title == search)
+        if (strcmp(stock[i].title, search) == 0)
         {
-            printf("enter the new quantity number :");
-            scanf("%d", stock[i].quantity);
-        }
-        else
-        {
-            printf("this book doesnt exist");
+            printf("Enter the new quantity: ");
+            scanf("%d", &newQuantity);
+            stock[i].quantity = newQuantity;
+            printf("Quantity updated successfully!\n");
+            found = 1;
+            break;
         }
     }
-};
+
+    if (!found)
+    {
+        printf("This book doesnt exist.\n");
+    }
+}
+
+
+// *************************************************************************
 
 void deleteBook()
 {
-    int search;
+    char search[50];
+    int found = 0;
 
     printf("Enter the title: ");
-    scanf("%s", &search);
+    scanf("%s", search);
 
     if (counter == 0)
     {
-        printf("not found!");
+        printf("No books to delete!\n");
         return;
     }
 
     for (int i = 0; i < counter; i++)
     {
-        if (stock[i].title == search)
+        if (strcmp(stock[i].title, search) == 0)
         {
-
-            stock[i] = stock[i + 1];
+            for (int j = i; j < counter - 1; j++)
+            {
+                stock[j] = stock[j + 1];
+            }
             counter--;
-        }
-        else
-        {
-            printf("not found");
+            printf("Book deleted successfully!\n");
+            found = 1;
+            break;
         }
     }
+
+    if (!found)
+    {
+        printf("This book doesnt exist.\n");
+    }
 };
+
+
+
+// *************************************************************************
+
 
 void totalBooks()
 {
@@ -152,6 +184,8 @@ void totalBooks()
     printf("the total books quantity is : %d", total); 
 };
 
+
+// *************************************************************************
 
 
 int main()
