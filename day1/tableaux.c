@@ -190,7 +190,7 @@ int main()
         scanf("%d", &arr[i]);
     }
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n - 1; i++)
     {
         for (int j = i + 1; j < n; j++)
         {
@@ -201,6 +201,10 @@ int main()
                 arr[i] = helper;
             }
         }
+    }
+    for (int i = 0; i < n; i++)
+    {
+
         printf("%d", arr[i]);
     }
 
@@ -260,29 +264,30 @@ int main()
     scanf("%d", &n);
 
     int arr[n];
-    int temp ; 
+    int temp;
 
     printf("enter those elements numbers : \n");
-    for(int i =0 ; i<n ; i++){
+    for (int i = 0; i < n; i++)
+    {
         printf("element %d: ", i + 1);
         scanf("%d", &arr[i]);
     }
 
-    for(int i=0 ; i<n/2 ; i++){
-        temp = arr[i]; 
-        arr[i] = arr[n-1-i]; 
-        arr[n-1-i] = temp ;
+    for (int i = 0; i < n / 2; i++)
+    {
+        temp = arr[i];
+        arr[i] = arr[n - 1 - i];
+        arr[n - 1 - i] = temp;
     }
     printf("the inverse of this array is:\n");
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         printf("%d ", arr[i]);
     }
     return 0;
-
 }
 
-
-// challenge 10 
+// challenge 10
 
 #include <stdio.h>
 
@@ -294,12 +299,13 @@ int main()
     scanf("%d", &n);
 
     int arr[n];
-    int temp ; 
-    int search ; 
-    int found =0; 
+    int temp;
+    int search;
+    int found = 0;
 
     printf("enter those elements numbers : \n");
-    for(int i =0 ; i<n ; i++){
+    for (int i = 0; i < n; i++)
+    {
         printf("element %d: ", i + 1);
         scanf("%d", &arr[i]);
     }
@@ -307,21 +313,88 @@ int main()
     printf("enter an element to search for in the array : ");
     scanf("%d", &search);
 
-    for(int i = 0 ; i<n ; i++){
-        if(arr[i] == search){
-           
-            found = 1 ; 
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == search)
+        {
+
+            found = 1;
             break;
         }
     }
 
-    if(found){
-         printf("found"); 
-    }else {
-         printf("mal9itch"); 
+    if (found)
+    {
+        printf("found");
     }
- return 0;
-}  
-
+    else
+    {
+        printf("mal9itch");
+    }
+    return 0;
+}
 
 // challenge 11
+#include <stdio.h>
+
+int main()
+{
+
+    int n;
+    printf("combien d'element dans le tableau : ");
+    scanf("%d", &n);
+
+    int arr[n];
+    int temp;
+    int search;
+    int found = 0;
+
+    printf("enter those elements numbers : \n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("element %d: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("entre the new %d elements : ", n);
+    for (int i = 0; i < n; i++)
+    {
+        printf("element %d: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d", arr[i]);
+        return 0;
+    }
+}
+
+// challenge 15
+
+#include <stdio.h>
+
+int main()
+{
+
+    int arr1[] = {1, 2, 3, 4};
+    int arr2[] = {1, 2, 3};
+    int n1 = 4, n2 = 3, n3 = n1 + n2;
+
+    int arr3[n3];
+
+    for (int i = 0; i < n1; i++)
+    {
+        arr3[i] = arr1[i];
+    }
+
+    for (int i = 0; i < n2; i++)
+    {
+        arr3[n1 + i] = arr2[i];
+    }
+
+    for (int i = 0; i < n3; i++)
+    {
+        printf("%d", arr3[i]);
+    }
+}
